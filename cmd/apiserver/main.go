@@ -25,18 +25,16 @@ func main() {
 	flag.Parse()
 	config := apiserver.NewConfig()
 	_, err := toml.DecodeFile(configPath, config)
-
-	passwordDB, exists := os.LookupEnv("DATABASE_PASSWORD")
-	if exists {
-		config.Store.DatabaseURL += fmt.Sprintf(" password=%s", passwordDB)
-	}
-
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	s := apiserver.New(config)
-	if err := s.Start(); err != nil {
+	passwordDB, exists := os.LookupEnv("DATABASE_PASSWORD")
+	if exists {
+		config.DatabaseURL += fmt.Sprintf(" password=%s", passwordDB)
+	}
+
+	if err := apiserver.Start(config); err != nil {
 		log.Fatal(err)
 	}
 }
