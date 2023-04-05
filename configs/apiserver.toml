@@ -1,3 +1,4 @@
 bind_addr = ":8080"
 log_level = "debug"
 database_url = "host=localhost port=5432 user=postgres dbname=rest_api"
+sessions_key = "KQqrvNqRR0GMRdv9uZWiQgXqrgq241@!$@#gqef1343526562feferg5225yjumuntbtbvrvrwr"
